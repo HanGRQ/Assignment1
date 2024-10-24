@@ -6,7 +6,7 @@ services:
     ports:
       - '9000:9000'
     environment:
-      MONGODB_URI: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017/moviesdb
+      MONGODB_URI: mongodb://admin:password@mongo:27017
       REDIS_URI: redis://redis:6379
       ENABLE_WRITING_HANDLERS: 'false'
     depends_on:
@@ -19,9 +19,10 @@ services:
     ports:
       - '27017:27017'
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
-      MONGO_INITDB_DATABASE: moviesdb
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./seeding.json:/seeding.json
 
   redis:
     image: redis:alpine
@@ -33,9 +34,9 @@ services:
     image: mongo-express:1.0-20-alpine3.19
     container_name: mongo-express
     ports:
-      - "8081:8081"
+      - '8081:8081'
     environment:
-      ME_CONFIG_MONGODB_URL: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017/moviesdb
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongo:27017
     depends_on:
       - mongo
 
