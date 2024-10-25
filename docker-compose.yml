@@ -24,11 +24,20 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
-    volumes:
-      - ./seeding.json:/seeding.json
     networks:
       - backend-db
       - mongo-express-net
+
+  mongo-seed:
+    build: ./seeding
+    container_name: mongo-seed
+    depends_on:
+      - mongo
+    volumes:
+      - /e/Agile/Assignment1/seeding/seeding.json:/seeding.json
+
+    networks:
+      - backend-db
 
   redis:
     image: redis:alpine
