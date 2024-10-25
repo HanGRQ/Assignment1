@@ -12,6 +12,9 @@ services:
     depends_on:
       - mongo
       - redis
+    networks:
+      - backend-api
+      - backend-db
 
   mongo:
     image: mongo:8.0-rc
@@ -23,12 +26,17 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       - ./seeding.json:/seeding.json
+    networks:
+      - backend-db
+      - mongo-express-net
 
   redis:
     image: redis:alpine
     container_name: redis
     ports:
       - '6379:6379'
+    networks:
+      - backend-api
 
   mongo-express:
     image: mongo-express:1.0-20-alpine3.19
@@ -39,7 +47,14 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongo:27017
     depends_on:
       - mongo
+    networks:
+      - backend-db
+      - mongo-express-net 
 
 networks:
-  backend:
+  backend-api:
     driver: bridge
+  backend-db:
+    driver: bridge
+  mongo-express-net:
+    driver: bridge  
