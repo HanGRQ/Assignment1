@@ -26,18 +26,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
     networks:
       - backend-db
-      - mongo-express-net
-
-  mongo-seed:
-    build: ./seeding
-    container_name: mongo-seed
-    depends_on:
-      - mongo
-    volumes:
-      - /e/Agile/Assignment1/seeding/seeding.json:/seeding.json
-
-    networks:
-      - backend-db
 
   redis:
     image: redis:alpine
@@ -47,23 +35,8 @@ services:
     networks:
       - backend-api
 
-  mongo-express:
-    image: mongo-express:1.0-20-alpine3.19
-    container_name: mongo-express
-    ports:
-      - '8081:8081'
-    environment:
-      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongo:27017
-    depends_on:
-      - mongo
-    networks:
-      - backend-db
-      - mongo-express-net 
-
 networks:
   backend-api:
     driver: bridge
   backend-db:
     driver: bridge
-  mongo-express-net:
-    driver: bridge  

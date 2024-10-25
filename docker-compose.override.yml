@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mongo-express:
+    image: mongo-express:1.0-20-alpine3.19
+    container_name: mongo-express
+    ports:
+      - '8081:8081'
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongo:27017
+    depends_on:
+      - mongo
+    networks:
+      - backend-db
+
+  mongo-seed:
+    build: ./seeding
+    container_name: mongo-seed
+    depends_on:
+      - mongo
+    volumes:
+      - /e/Agile/Assignment1/seeding/seeding.json:/seeding.json
+    networks:
+      - backend-db
+
+networks:
+  backend-db:
+    driver: bridge
