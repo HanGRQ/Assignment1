@@ -1,5 +1,9 @@
 ## Agile Software Practice - Assignment 1.
 
+**Name:** Sihan Ma
+
+**Student ID:** 20108801
+
 ## Overview
 
 This repository hosts a Dockerized multi-container application for managing movie data via a RESTful API. The **Movies API** retrieves movie information from **MongoDB**, with **Redis** used for caching responses and applying rate limits to certain endpoints. Additionally, **Mongo Express** provides a web interface for MongoDB management, but is only available in the development environment. This project also includes automatic database seeding, enabled through a dedicated `mongo-seed` container, which pre-fills MongoDB with movie data during development.
