@@ -6,7 +6,7 @@ __Demo:__ https://youtu.be/16LUkyyby7Q
 
 This repository contains the containerization of the mukti-container application illustrated below.
 
-![](E:\Agile\Assignment1\images\arch.png)
+![](images/arch.png)
 
 ### Database Seeding.
 
