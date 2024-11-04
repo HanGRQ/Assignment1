@@ -6,7 +6,7 @@ __Demo:__ https://youtu.be/16LUkyyby7Q
 
 This repository contains the containerization of the mukti-container application illustrated below.
 
-![](E:\assignment1-README\assignment1-README\images\arch.png)
+![](E:\Agile\Assignment1\images\arch.png)
 
 ### Database Seeding.
 
@@ -58,7 +58,7 @@ The **development stack** is designed to provide a comprehensive environment wit
   - **Mongo Express**: A web-based MongoDB administration interface, accessible at `http://localhost:8081`.
   - **Mongo Seed**: A service that automatically seeds MongoDB with initial data using the `seeding.json` file.
 
-**Setup**: The development stack is launched using the command:
+**Setup**: The development stack is launched using the command
 
 ```bash
 docker-compose up -d
@@ -78,9 +78,7 @@ The **production stack** is streamlined to ensure efficiency, security, and mini
   - **Mongo Express**: Removed to avoid exposing database administration tools in production.
   - **Mongo Seed**: Disabled to prevent unnecessary seeding operations in a live environment.
 
-**Setup**:
-
-- Launch with:
+**Setup**:The production stack is launched using the command
 
   ```bash
   docker-compose -f docker-compose.yml up -d
